@@ -160,7 +160,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private synchronized void printName(Student student) {
-        LOGGER.info(student.getName());
+        synchronized (this) {
+            LOGGER.info(String.format("Print with sync on monitor %s : name = %s", this, student.getName()));
+        }
     }
 }
 
